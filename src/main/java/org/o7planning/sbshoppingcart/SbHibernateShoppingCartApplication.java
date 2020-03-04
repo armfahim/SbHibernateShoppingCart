@@ -1,7 +1,10 @@
 package org.o7planning.sbshoppingcart;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SbHibernateShoppingCartApplication {
 	
 	@Autowired
-	private Environment env;
+	Environment env;
 	
 	@Value("${spring.datasource.driver-class-name}")
 	private String dbDriver;
@@ -62,6 +65,17 @@ public class SbHibernateShoppingCartApplication {
 		log.info("getDataSource"+dataSource);
 		
 		return dataSource;
+		
+	}
+	
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource){
+		Properties properties = new Properties();
+		
+        //see: application.properties
+		properties.put("hibernate.dialect", );
+		return null;
 		
 	}
 
